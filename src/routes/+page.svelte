@@ -1,9 +1,27 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
+	import { onMount } from 'svelte';
+	import tippy from 'tippy.js';
+	import 'tippy.js/dist/tippy.css';
 	import UrlBox from '$lib/components/url-box.svelte';
 	import type { ActionData } from './$types';
 
 	export let form: ActionData;
+
+	const message = `
+		Link shorteners generate a unique id for any URL and store in their database.
+		Shortner then returns the shortened URL by adding the unique id to the domain name.
+		When a user clicks on the shortened URL, the shortener redirects the user to the original URL.
+		Since our domain name is longer, our short links are longer. This can be resolved with smaller domain.
+	`;
+
+	onMount(() => {
+		tippy('#tippy-container', {
+			content: message,
+			placement: 'bottom',
+			interactive: true
+		});
+	});
 </script>
 
 <section class="hero">
@@ -18,6 +36,11 @@
 
 	{#if form?.data?.shortUrl}
 		<UrlBox url={form.data.shortUrl} />
+
+		<div id="tippy-container">
+			<Icon icon="mdi:information-outline" />
+			<span>Why short link appear longer?</span>
+		</div>
 	{/if}
 </section>
 
@@ -89,5 +112,15 @@
 		width: 1.2em;
 		height: 1.2em;
 		vertical-align: middle;
+	}
+
+	#tippy-container {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-top: 1rem;
+		cursor: pointer;
+		user-select: none;
+		color: var(--text-secondary);
 	}
 </style>
