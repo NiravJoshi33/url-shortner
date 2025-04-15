@@ -67,6 +67,10 @@
 		gap: 0.5rem;
 		width: 100%;
 		max-width: 500px;
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+		}
 	}
 
 	input[type='text'] {
@@ -87,6 +91,7 @@
 	.shorten-button {
 		display: inline-flex;
 		align-items: center;
+		justify-content: center;
 		gap: 0.5rem;
 		padding: 0.8rem 1.5rem;
 		border: none;
