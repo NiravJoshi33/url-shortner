@@ -23,4 +23,8 @@ html {
 	box-sizing: border-box;
 	background-color: var(--bg-primary);
 	color: var(--text-primary);
+
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
